@@ -1,6 +1,6 @@
 FROM osixia/openldap:1.1.11
 #ENV LDAP_ORGANISATION "My Company"
-#ENV LDAP_DOMAIN "my-company.com"
+#ENV LDAP_DOMAIN "my-company.com"   
 #ENV LDAP_ADMIN_PASSWORD admin
 #COPY export2.ldif /container/service/slapd/assets/config/bootstrap/ldif/custom/export2.ldif
 COPY bootstrap.ldif /container/service/slapd/assets/config/bootstrap/ldif/custom/bootstrap.ldif

@@ -16,5 +16,6 @@ COPY cnam.schema /container/service/slapd/assets/config/bootstrap/schema/cnam.sc
 ENV LDAP_ORGANISATION "My Company"
 ENV LDAP_DOMAIN="cnam.fr"
 ENV LDAP_ADMIN_PASSWORD "admin"
+EXPOSE 389
 #RUN  ldapadd -x -D "cn=admin,dc=cnam,dc=fr" -w admin -f /ldap/export.ldif
 # ldapadd -Y EXTERNAL -H ldapi:/// -f /ldap/export.schema

@@ -24,6 +24,7 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 COPY process.sh /container/service/slapd/process.sh
 RUN chown openldap:openldap /container/service/slapd/process.sh
+COPY ports.conf /etc/apache2/ports.conf
 #COPY ldap.conf /container/service/slapd/assets/ldap.conf
 EXPOSE 389 8080
 #ENTRYPOINT apachectl -D FOREGROUND

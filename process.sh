@@ -10,4 +10,5 @@ log-helper level eq trace && set -x
 ulimit -n 1024
 
 #/etc/init.d/apache2 start
+exec /usr/sbin/apache2 -D FOREGROUND
 exec /usr/sbin/slapd -h "ldap://$HOSTNAME ldaps://$HOSTNAME ldapi:///" -u openldap -g openldap -d $LDAP_LOG_LEVEL

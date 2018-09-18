@@ -1,0 +1,22 @@
+
+node:
+    #image: node
+    build: ./node
+    container_name: node_hyper
+    volumes:
+        - "/root/ldap/node/src/:/usr/src"
+    #ports:
+    #    - 4444:4444
+    #    - 4200:4200
+    working_dir: "/usr/src/"
+    #command: "/etc/start.sh"
+    command: "npm start"
+    links:
+    - ldap
+ldap:
+    container_name: ldap_hyper
+    build: ./ldap
+    ports:
+    - "389:389"
+    volumes:
+    - "/root/ldap/ldap/:/ldap/"

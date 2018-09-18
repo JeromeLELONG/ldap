@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development node ./node/src/server/server.babel.js",
-    "prod": "NODE_ENV=production node ./src/server/server.babel.js",
+    "start": "NODE_ENV=development node ./src/server/server.babel.js",
+    "prod": "NODE_ENV=production node ./server/server.babel.js",
     "build": "npm run build:client && npm run build:server",
     "build:server": "NODE_ENV=production webpack --config ./webpack/server.babel.js",
     "build:client": "NODE_ENV=production webpack --config ./webpack/prod.babel.js"
@@ -19,6 +19,12 @@
     "express": "^4.14.0",
     "immutable": "^3.8.1",
     "json-loader": "^0.5.7",
+    "react": "^15.3.1",
+    "react-dom": "^15.4.1",
+    "react-dom-stream": "^0.5.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.7.0",
+    "react-router-redux": "^4.0.5",
     "redux": "^3.6.0",
     "redux-immutablejs": "0.0.8"
   },

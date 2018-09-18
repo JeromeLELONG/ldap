@@ -1,5 +1,5 @@
 FROM node
-COPY package.json /usr/src/package.json
+COPY src/package.json /usr/src/package.json
 COPY start.sh /etc/start.sh
 #RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 73C3DB2A
 #RUN echo "deb http://ppa.launchpad.net/linuxuprising/java/ubuntu xenial main " | tee -a /etc/apt/sources.list.d/linux-uprising_java.list

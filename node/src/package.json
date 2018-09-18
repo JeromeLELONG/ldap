@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development node ./node/src/server/server.babel.js",
-    "prod": "NODE_ENV=production node ./src/server/server.babel.js",
+    "start": "NODE_ENV=development node ./server/server.babel.js",
+    "prod": "NODE_ENV=production node ./server/server.babel.js",
     "build": "npm run build:client && npm run build:server",
     "build:server": "NODE_ENV=production webpack --config ./webpack/server.babel.js",
     "build:client": "NODE_ENV=production webpack --config ./webpack/prod.babel.js"

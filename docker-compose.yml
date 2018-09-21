@@ -11,6 +11,7 @@ node:
     working_dir: "/usr/src/"
     #command: "/etc/start.sh"
     command: "npm start"
+    #command: "ping localhost"
     links:
     - ldap
 ldap:

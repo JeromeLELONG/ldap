@@ -1,8 +1,8 @@
 
-dn: uid=jeong, dc=cnam,dc=fr
+dn: uid=lelongj, dc=cnam,dc=fr
 changetype: add
-uid: jeong
-cn: jeong
+uid: lelongj
+cn: lelongj
 sn: Jeon
 objectClass: top
 objectClass: posixAccount
@@ -15,6 +15,8 @@ gidNumber: 14564100
 userPassword: motdepasse
 mail: billy@example.org
 gecos: Billy User
+acl: o
+fullname: null
 casecourrier: EPN10
 codeservice: EPN10
 civilite: M.

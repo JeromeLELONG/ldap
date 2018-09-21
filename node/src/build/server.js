@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3a5dcc3553c3848a3077"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "906222f904e863035267"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1431,6 +1431,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var _jsxFileName = '/usr/src/src/server.js';
 
+var trouverPersonnel = function () {
+  var _ref = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return client.bindAsync('cn=admin,dc=cnam,dc=fr', 'admin').then() // if it works, call doSearch
+            .catch(function (err) {
+              // if bind fails, handle it
+              console.error('Error on bind', err);
+            });
+
+          case 2:
+            return _context.abrupt('return', client.searchAsync('dc=cnam,dc=fr', { filter: '(&(uid=lelongj))', scope: 'sub', attributes: ['uid', 'sn', 'givenname'] }).then(function (res) {
+              return searchPromise(res, 'User isn\'t exists.');
+            }).then(function (entry) {
+              uid = entry.object.uid;
+              return entry.object;
+              //return client.bindAsync(entry.object.dn, credentials.password);
+            })
+            /*
+            .then(function() {
+              return client.searchAsync('cn=cldap,ou=services,dc=cnam,dc=fr', {filter: '(&(uid=lelongj))', scope: 'sub',attributes: ['uid','givenname']});
+            })
+            .then(function(res) {
+              return searchPromise(res, 'User is not in group ');
+            })
+            .then(function() {
+              console.log('All is ok');
+            })
+            .catch(function(message) {
+              console.log('Error:' + message);
+            })
+            */
+            );
+
+          case 3:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function trouverPersonnel() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+
 
 
 
@@ -1443,7 +1494,7 @@ function ldapSearch() {
 
   //ldap.Attribute.settings.guid_format = ldap.GUID_FORMAT_B;
   var client = ldap.createClient({
-    url: 'ldap://ldap.cnam.fr/cn=cldap,ou=services,dc=cnam,dc=fr',
+    url: 'ldap://ldap/cn=cldap,ou=services,dc=cnam,dc=fr',
     timeout: 5000,
     connectTimeout: 10000
   });
@@ -1506,7 +1557,7 @@ function ldapSearch() {
   }
 }
 
-var client = ldap.createClient({ url: 'ldap://ldap.cnam.fr/cn=cldap,ou=services,dc=cnam,dc=fr' });
+var client = ldap.createClient({ url: 'ldap://ldap/cn=admin,dc=cnam,dc=fr' });
 var uid;
 
 promise.promisifyAll(client);
@@ -1530,54 +1581,30 @@ function searchPromise(res, notfoundtext) {
 }
 var credentials = { password: '' };
 
-function trouverPersonnel() {
-  return client.searchAsync('ou=people,o=personnel,dc=cnam,dc=fr', { filter: '(&(uid=lelongj))', scope: 'sub', attributes: ['uid', 'sn', 'givenname', 'lecnamnet-mail', 'email', 'codeservice', 'casecourrier'] }).then(function (res) {
-    return searchPromise(res, 'User isn\'t exists.');
-  }).then(function (entry) {
-    uid = entry.object.uid;
-    return entry.object;
-    //return client.bindAsync(entry.object.dn, credentials.password);
-  })
-  /*
-  .then(function() {
-    return client.searchAsync('cn=cldap,ou=services,dc=cnam,dc=fr', {filter: '(&(uid=lelongj))', scope: 'sub',attributes: ['uid','givenname']});
-  })
-  .then(function(res) {
-    return searchPromise(res, 'User is not in group ');
-  })
-  .then(function() {
-    console.log('All is ok');
-  })
-  .catch(function(message) {
-    console.log('Error:' + message);
-  })
-  */
-  ;
-}
 router.get('/', function () {
-  var _ref = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(req, res, next) {
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+  var _ref2 = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_asyncToGenerator___default()( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(req, res, next) {
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
-            _context.t0 = res;
-            _context.next = 3;
+            _context2.t0 = res;
+            _context2.next = 3;
             return trouverPersonnel();
 
           case 3:
-            _context.t1 = _context.sent;
-            return _context.abrupt('return', _context.t0.json.call(_context.t0, _context.t1));
+            _context2.t1 = _context2.sent;
+            return _context2.abrupt('return', _context2.t0.json.call(_context2.t0, _context2.t1));
 
           case 5:
           case 'end':
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee, this);
+    }, _callee2, this);
   }));
 
   return function (_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }());
 
@@ -1593,13 +1620,13 @@ server.disable('x-powered-by').use(__WEBPACK_IMPORTED_MODULE_7_express___default
     __WEBPACK_IMPORTED_MODULE_6_react_router_dom__["StaticRouter"],
     { context: context, location: req.url, __source: {
         fileName: _jsxFileName,
-        lineNumber: 134
+        lineNumber: 140
       }
     },
     __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__App__["a" /* default */], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 135
+        lineNumber: 141
       }
     })
   ));

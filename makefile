@@ -9,3 +9,8 @@ install: install-node
 
 reload-apache: 
 	docker-compose run --rm --no-deps apache bash -ci 'apache2ctl  graceful'
+
+install-node:
+	docker-compose run --rm --no-deps node bash -ci 'npm cache clean -f && npm install --force'
+	
+install: install-node

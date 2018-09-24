@@ -59,8 +59,7 @@ console.log(error);
 
 
 
-//var client = ldap.createClient({url: 'ldap://ldap/cn=admin,dc=cnam,dc=fr'});
-var client = ldap.createClient({url: 'ldap://163.173.48.36/cn=cldap,ou=services,dc=cnam,dc=fr'});
+var client = ldap.createClient({url: 'ldap://ldap/cn=admin,dc=cnam,dc=fr'});
 var uid;
 
 promise.promisifyAll(client);
@@ -85,15 +84,13 @@ function searchPromise(res, notfoundtext) {
 var credentials = {password:''};
 
 async function trouverPersonnel() {
-  //await client.bindAsync('cn=admin,dc=cnam,dc=fr', 'admin')
-  /*
-  await client.bindAsync('ou=people,o=personnel,dc=cnam,dc=fr', 'admin')
+  await client.bindAsync('cn=admin,dc=cnam,dc=fr', 'admin')
   .then() // if it works, call doSearch
   .catch(function (err) { // if bind fails, handle it
     console.error('Error on bind', err)
   });
-*/
-  return client.searchAsync('ou=people,o=personnel,dc=cnam,dc=fr', {filter: '(&(uid=lelongj))', scope: 'sub',attributes: ['uid','sn','givenname']})
+
+  return client.searchAsync('dc=cnam,dc=fr', {filter: '(&(uid=lelongj))', scope: 'sub',attributes: ['uid','sn','givenname']})
   .then(function(res) {
     return searchPromise(res, 'User isn\'t exists.');
   })
